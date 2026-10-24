@@ -22,3 +22,17 @@ Thumbs.db
 *.log
 
 # Add entries appropriate to your chosen language or framework.
+
+# Swift / Xcode
+.build/
+.swiftpm/
+.vscode/
+
+# Android build outputs & local config
+**/.gradle
+**/local.properties
+**/.idea/
+
+# Local Python env for the macOS server and runtime data (contains GPS/phone numbers)
+.venv-mac/
+server/latest_telemetry.json

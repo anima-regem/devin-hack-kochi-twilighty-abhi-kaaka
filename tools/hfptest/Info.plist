@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.kaaka.hfptest</string>
+    <key>CFBundleName</key>
+    <string>hfptest</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>hfptest connects to your phone as a Bluetooth hands-free unit.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>hfptest records the Bluetooth hands-free audio input to a WAV file.</string>
+</dict>
+</plist>

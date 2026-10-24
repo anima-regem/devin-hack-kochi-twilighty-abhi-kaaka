@@ -4,16 +4,12 @@ Record each meaningful project change during the event, newest first. Update thi
 
 ## Event build log
 
-No project implementation has been recorded yet. Replace this sentence with entries as you build:
+## 2026-10-24T21:20:00+05:30 — Add hfptest Bluetooth hands-free feasibility tool
 
-```text
-## <actual timestamp> — <short change title>
-
-- Changed: <feature or files changed>
-- Why: <reason for the change>
-- Validation: <commands or manual checks actually run, with results>
-- Limitations: <known issues or "None identified in these checks">
-```
+- Changed: Added `tools/hfptest` (Swift package, IOBluetooth) that lists paired devices with HFP Audio Gateway SDP status, connects to a phone as a Hands-Free unit, logs indicators/incoming calls, answers calls, requests SCO audio and records any Bluetooth input device to WAV.
+- Why: Check whether a MacBook (Apple Silicon, macOS 27) can replace the Linux PipeWire hands-free setup used by the call server.
+- Validation: Built with `swift build`; live tests against a Galaxy S23 on 2026-10-24: HFP connection PASS, incoming call detected PASS, answer from Mac worked, SCO audio FAIL (`kIOReturnUnsupported`, 0xE00002C7), no Bluetooth CoreAudio device appeared.
+- Limitations: macOS does not provide HFP call audio (SCO) to apps; only call control works. `connect()` silently does nothing unless the baseband link is opened and SDP refreshed first (handled in the tool).
 
 ## Template setup — 10 October 2026
 
