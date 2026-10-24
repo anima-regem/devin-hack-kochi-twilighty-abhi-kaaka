@@ -4,6 +4,13 @@ Record each meaningful project change during the event, newest first. Update thi
 
 ## Event build log
 
+## 2026-10-24T21:30:00+05:30 — Import RakshaNet call and telemetry system
+
+- Changed: Imported the existing RakshaNet code from the separate `phone-connector` folder: `client/` (Capacitor sensor + default-SMS app), `gateway/` (Capacitor call/SMS gateway app), `server/` (Python PipeWire/oFono call server, audio bridge, dashboard, Node telemetry backend), `scripts/`, prebuilt APKs, and its README as the project README.
+- Why: Consolidate the project into this repository before porting the server to macOS and renaming it.
+- Validation: Content copied unchanged from the original folder (dependency/build folders and runtime telemetry data excluded); no code changes in this commit.
+- Limitations: Server side is Linux-only at this point (PipeWire, BlueZ, D-Bus). This code was written before this repository was created; it was not built from scratch here.
+
 ## 2026-10-24T21:20:00+05:30 — Add hfptest Bluetooth hands-free feasibility tool
 
 - Changed: Added `tools/hfptest` (Swift package, IOBluetooth) that lists paired devices with HFP Audio Gateway SDP status, connects to a phone as a Hands-Free unit, logs indicators/incoming calls, answers calls, requests SCO audio and records any Bluetooth input device to WAV.
