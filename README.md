@@ -233,3 +233,9 @@ For the voice AI loop, keep using the Linux setup (or a Linux machine/VM with it
 ---
 
 Hackathon repository docs: [RULES.md](RULES.md) · [AGENTS.md](AGENTS.md) · [SUBMISSION.md](SUBMISSION.md) · [CHANGELOG.md](CHANGELOG.md) · [AI_USAGE.md](AI_USAGE.md)
+
+## Event clarification
+
+Devin Hack Kochi has no major AI usage constraints. Participants may use Devin and other AI tools, models, and providers; this template does not require Codex or restrict AI usage to OpenAI. AI usage notes are project documentation, not an additional event eligibility requirement.
+
+See [RULES.md](RULES.md) for the corrected event guidance.
