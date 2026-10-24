@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'net.rakshak.sensors',
-  appName: 'RakshakSensors',
+  appId: 'com.kaaka.sensors',
+  appName: 'KaakaSensors',
   webDir: 'build'
 };
 

@@ -13,7 +13,7 @@ export const apiRouter = Router();
 apiRouter.get("/health", (_req, res) => {
   res.json({
     status: "ok",
-    service: "Rakshak Sensors Telemetry Backend",
+    service: "Kaaka Sensors Telemetry Backend",
     timestamp: Date.now(),
     uptime: process.uptime()
   });

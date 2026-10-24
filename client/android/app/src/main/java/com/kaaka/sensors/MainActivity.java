@@ -1,4 +1,4 @@
-package net.rakshak.sensors;
+package com.kaaka.sensors;
 
 import android.app.role.RoleManager;
 import android.content.Context;
@@ -24,7 +24,7 @@ public class MainActivity extends BridgeActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        registerPlugin(RakshakSensorsPlugin.class);
+        registerPlugin(KaakaSensorsPlugin.class);
         registerPlugin(DirectSmsPlugin.class);
         registerPlugin(DefaultSmsPlugin.class);
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class MainActivity extends BridgeActivity {
 
     private void processIntent(Intent intent) {
         if (intent == null) return;
-        if ("net.rakshak.sensors.STOP_BEACON".equals(intent.getAction())) {
+        if ("com.kaaka.sensors.STOP_BEACON".equals(intent.getAction())) {
             Log.d(TAG, "STOP_BEACON intent received in MainActivity");
             DefaultSmsPlugin.triggerStopBeacon();
             return;

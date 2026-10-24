@@ -12,7 +12,7 @@ import type {
 } from "#lib/types/sensor.js";
 
 // Native plugin interface
-interface RakshakSensorsNativePlugin {
+interface KaakaSensorsNativePlugin {
 	getSensorStatus(): Promise<{
 		accelerometerAvailable: boolean;
 		gyroscopeAvailable: boolean;
@@ -35,7 +35,7 @@ interface RakshakSensorsNativePlugin {
 	): Promise<{ remove: () => Promise<void> }>;
 }
 
-const NativeSensors = registerPlugin<RakshakSensorsNativePlugin>("RakshakSensors");
+const NativeSensors = registerPlugin<KaakaSensorsNativePlugin>("KaakaSensors");
 
 export class SensorManager {
 	// Reactive state using Svelte 5 runes
@@ -473,7 +473,7 @@ export class SensorManager {
 			if (!this.backendSyncEnabled || !this.isListening) return;
 
 			const payload = {
-				deviceId: "android-device-rakshak",
+				deviceId: "android-device-kaaka",
 				platform: this.isNative ? "android-capacitor" : "web-preview",
 				timestamp: this.lastUpdateTimestamp,
 				sensors: {

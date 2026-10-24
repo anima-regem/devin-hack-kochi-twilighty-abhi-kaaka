@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RakshaNet Bluetooth Call & Telemetry WebSocket + Dashboard Server
+Kaaka Bluetooth Call & Telemetry WebSocket + Dashboard Server
 =================================================================
 1. Monitors Bluetooth handsfree phone calls in PipeWire/Helvum.
    When an active call is detected, extracts the phone number and
@@ -61,6 +61,12 @@ def get_local_ip():
         s.close()
     return ip
 
+# Alert tags: "Kaaka" is current; "Rakshak" is sent by app builds from before the rename.
+ALERT_TAGS = ("Kaaka", "Rakshak")
+
+def has_alert_tag(text, suffix=""):
+    return any(f"{tag}{suffix}" in text for tag in ALERT_TAGS)
+
 def format_timestamp():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -119,7 +125,7 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
             gateway_mode = "cellular_hfp" if (bt_connected and telephony_ag_online) else ("app_only" if len(phone_clients) > 0 else "offline")
 
             status_data = {
-                "server": "RakshaNet Telemetry Server",
+                "server": "Kaaka Telemetry Server",
                 "local_ip": self.server_instance.local_ip,
                 "ws_port": self.server_instance.port,
                 "http_port": self.server_instance.http_port,
@@ -188,7 +194,7 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(body)
         elif self.path == "/api/trigger-telemetry":
             sample_alert = (
-                "Rakshak Alert: Emergency assistance requested\n\n"
+                "Kaaka Alert: Emergency assistance requested\n\n"
                 "Live Sensors (5/5):\n"
                 "• Pedometer: 0 steps (0.00 km)\n"
                 "• Light: 53 lx\n"
@@ -314,7 +320,7 @@ class TelemetryServer:
         """
         Displays live sensor readings in the exact requested visual format:
         
-        Rakshak Alert: Emergency assistance requested
+        Kaaka Alert: Emergency assistance requested
 
         Live Sensors (5/5):
         • Pedometer: <steps> steps (<dist> km)
@@ -331,8 +337,8 @@ class TelemetryServer:
 
         # Standardize header if present with trailing punctuation
         clean_text = re.sub(
-            r"Rakshak Alert:\s*Emergency assistance requested\.?",
-            "Rakshak Alert: Emergency assistance requested",
+            r"(?:Kaaka|Rakshak) Alert:\s*Emergency assistance requested\.?",
+            "Kaaka Alert: Emergency assistance requested",
             clean_text
         )
 
@@ -341,7 +347,7 @@ class TelemetryServer:
         source_label = f"{sender} ({source})" if sender else source
 
         print("\n" + "=" * 65, flush=True)
-        print(f"\033[1;31m[{ts}] 🚨 RAKSHAK SENSOR TELEMETRY RECEIVED (Update #{self.telemetry_count})\033[0m", flush=True)
+        print(f"\033[1;31m[{ts}] 🚨 KAAKA SENSOR TELEMETRY RECEIVED (Update #{self.telemetry_count})\033[0m", flush=True)
         print(f"\033[1;36m  Channel Source  : \033[0m{source_label}", flush=True)
         print("=" * 65, flush=True)
         print(f"\033[1;32m{clean_text}\033[0m", flush=True)
@@ -644,7 +650,7 @@ class TelemetryServer:
 
         welcome_payload = {
             "type": "SERVER_READY",
-            "server": "RakshaNet Call & Telemetry Server",
+            "server": "Kaaka Call & Telemetry Server",
             "ip": self.local_ip,
             "port": self.port,
             "http_port": self.http_port,
@@ -690,7 +696,7 @@ class TelemetryServer:
                     else:
                         print(f"[{format_timestamp()}] 📩 Received from client: {data}")
                 except json.JSONDecodeError:
-                    if "Live Sensors" in raw_message or "Rakshak Alert" in raw_message:
+                    if "Live Sensors" in raw_message or has_alert_tag(raw_message, " Alert"):
                         self.display_telemetry(raw_message, sender="Client App", source="Raw App WebSocket")
                     else:
                         print(f"[{format_timestamp()}] 📩 Raw text from client: {raw_message}")
@@ -820,11 +826,11 @@ class TelemetryServer:
             subj = str(props.get('Subject', ''))
             sender = str(props.get('SenderAddress', ''))
             
-            # Check if this message is a Rakshak sensor reading or from caller
-            if 'Rakshak' in subj or 'Sensors' in subj or 'Live Sensors' in subj or 'Pedometer' in subj or '8714711540' in sender or subj.startswith('proto:'):
+            # Check if this message is a Kaaka sensor reading or from caller
+            if has_alert_tag(subj) or 'Sensors' in subj or 'Live Sensors' in subj or 'Pedometer' in subj or '8714711540' in sender or subj.startswith('proto:'):
                 full_content = fetch_full_message(path)
                 final_text = full_content if full_content else subj
-                if 'Rakshak' in final_text or 'Sensors' in final_text or 'Live Sensors' in final_text or 'Pedometer' in final_text:
+                if has_alert_tag(final_text) or 'Sensors' in final_text or 'Live Sensors' in final_text or 'Pedometer' in final_text:
                     self.display_telemetry(final_text, sender=sender, source="Bluetooth BLE / MAP")
                     return True
             return False
@@ -887,9 +893,9 @@ class TelemetryServer:
                     self.processed_msg_ids.add(msg_id)
                     subj = str(meta.get('Subject', ''))
                     sender = str(meta.get('SenderAddress', ''))
-                    if latest_alert is None and ('8714711540' in sender or 'Rakshak' in subj or subj.startswith('proto:')):
+                    if latest_alert is None and ('8714711540' in sender or has_alert_tag(subj) or subj.startswith('proto:')):
                         full_content = fetch_full_message(path)
-                        if full_content and ('Rakshak' in full_content or 'Live Sensors' in full_content or 'Pedometer' in full_content):
+                        if full_content and (has_alert_tag(full_content) or 'Live Sensors' in full_content or 'Pedometer' in full_content):
                             latest_alert = full_content
                             latest_sender = sender or "+918714711540"
                 if latest_alert and (self.latest_telemetry is None or self.telemetry_count == 0):
@@ -936,7 +942,7 @@ class TelemetryServer:
                 if text in ['t', 'telemetry', 'alert']:
                     print(f"[{format_timestamp()}] 🧪 Simulating sensor telemetry alert:")
                     sample_alert = (
-                        "Rakshak Alert: Emergency assistance requested\n\n"
+                        "Kaaka Alert: Emergency assistance requested\n\n"
                         "Live Sensors (5/5):\n"
                         "• Pedometer: 0 steps (0.00 km)\n"
                         "• Light: 53 lx\n"
@@ -996,7 +1002,7 @@ class TelemetryServer:
                 elif "0fdefe1e3cfa" in dev_out:
                     target_cmd = ["adb", "-s", "0fdefe1e3cfa"]
 
-                cmd = target_cmd + ["shell", "content query --uri content://sms --where \"address LIKE '%8714711540%' OR body LIKE '%Rakshak%'\""]
+                cmd = target_cmd + ["shell", "content query --uri content://sms --where \"address LIKE '%8714711540%' OR body LIKE '%Kaaka%' OR body LIKE '%Rakshak%'\""]
                 res = subprocess.run(cmd, capture_output=True, text=True, timeout=4)
                 if res.returncode == 0 and res.stdout and "No result found" not in res.stdout:
                     rows = res.stdout.split("Row: ")
@@ -1029,7 +1035,7 @@ class TelemetryServer:
                                 addr_m = re.search(r"address=([^\s,]+)", r)
                                 if body_m:
                                     b_text = body_m.group(1).strip()
-                                    if "Rakshak Alert" in b_text or "Live Sensors" in b_text or "Pedometer" in b_text:
+                                    if has_alert_tag(b_text, " Alert") or "Live Sensors" in b_text or "Pedometer" in b_text:
                                         s_addr = addr_m.group(1) if addr_m else "+918714711540"
                                         self.display_telemetry(b_text, sender=s_addr, source="Phone ADB Telephony Ingest")
             except Exception:
@@ -1068,7 +1074,7 @@ class TelemetryServer:
         adb_telemetry_thread.start()
 
         print("\n" + "=" * 65)
-        print(" 🚀 RakshaNet Telephony, BLE & Dashboard Server")
+        print(" 🚀 Kaaka Telephony, BLE & Dashboard Server")
         print("=" * 65)
         print(f"  🌐 Local Wi-Fi IP  : \033[1;36m{self.local_ip}\033[0m")
         print(f"  🔌 WebSocket Port  : \033[1;36m{self.port}\033[0m  (\033[1;32mws://{self.local_ip}:{self.port}\033[0m)")
@@ -1085,7 +1091,7 @@ class TelemetryServer:
             await asyncio.Future()  # run forever
 
 def main():
-    parser = argparse.ArgumentParser(description="RakshaNet Bluetooth Call & Telemetry Server")
+    parser = argparse.ArgumentParser(description="Kaaka Bluetooth Call & Telemetry Server")
     parser.add_argument("--port", "-p", type=int, default=8765, help="WebSocket port (default: 8765)")
     parser.add_argument("--http-port", type=int, default=8080, help="Web Dashboard HTTP port (default: 8080)")
     parser.add_argument("--host", default="0.0.0.0", help="Host interface (default: 0.0.0.0)")

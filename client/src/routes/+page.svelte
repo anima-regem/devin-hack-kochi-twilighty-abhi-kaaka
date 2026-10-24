@@ -44,11 +44,11 @@
 		<div class="mx-auto flex max-w-5xl items-center justify-between gap-3">
 			<div class="flex items-center gap-3.5 sm:gap-4">
 				<div class="flex h-13 w-13 sm:h-15 sm:w-15 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg ring-1 ring-primary/30 overflow-hidden p-1.5">
-					<img src={logo} alt="Rakshak Logo" class="h-full w-full object-contain rounded-xl" />
+					<img src={logo} alt="Kaaka Logo" class="h-full w-full object-contain rounded-xl" />
 				</div>
 				<div class="min-w-0">
 					<div class="flex items-center gap-2.5 flex-wrap">
-						<h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight truncate">Rakshak Sensors</h1>
+						<h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight truncate">Kaaka Sensors</h1>
 						<span class="text-xs font-semibold text-emerald-400">
 							{sensorManager.isNative ? "Android" : "Web Preview"}
 						</span>

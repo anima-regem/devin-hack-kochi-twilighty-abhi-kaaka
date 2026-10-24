@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Mermaid Diagram Generator for realm-hack Monorepo.
+Mermaid Diagram Generator for kaaka Monorepo.
 Generates structured sequence diagrams for interactions between:
 - Client (App): Hardware Sensors, Incident Detection, Default SMS Role
 - Gateway (App): Bluetooth Call Auto-Responder, Quick Dialer

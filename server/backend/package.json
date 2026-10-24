@@ -1,7 +1,7 @@
 {
-  "name": "rakshak-sensor-backend",
+  "name": "kaaka-sensor-backend",
   "version": "1.0.0",
-  "description": "Clean telemetry and real-time sensor backend for Rakshak Sensors",
+  "description": "Clean telemetry and real-time sensor backend for Kaaka Sensors",
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",

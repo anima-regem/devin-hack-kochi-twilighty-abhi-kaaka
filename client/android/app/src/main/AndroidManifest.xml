@@ -83,7 +83,7 @@
             android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-                <action android:name="net.rakshak.sensors.TEST_INCOMING_SMS" />
+                <action android:name="com.kaaka.sensors.TEST_INCOMING_SMS" />
                 <action android:name="com.example.sampleapp.TEST_INCOMING_SMS" />
             </intent-filter>
         </receiver>

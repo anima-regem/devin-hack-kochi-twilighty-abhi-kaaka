@@ -1,11 +1,10 @@
-package net.rakshak.sensors;
+package com.kaaka.callapp;
 
 import android.Manifest;
 import android.content.Context;
 import android.os.Build;
 import android.telephony.SmsManager;
 import java.util.ArrayList;
-import com.getcapacitor.JSObject;
 import com.getcapacitor.PermissionState;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -75,9 +74,7 @@ public class DirectSmsPlugin extends Plugin {
                 smsManager.sendTextMessage(number, null, message, null, null);
             }
 
-            JSObject ret = new JSObject();
-            ret.put("success", true);
-            call.resolve(ret);
+            call.resolve();
         } catch (Exception e) {
             call.reject("Failed to send SMS: " + e.getMessage(), e);
         }

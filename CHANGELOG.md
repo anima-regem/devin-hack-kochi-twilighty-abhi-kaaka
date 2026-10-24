@@ -4,6 +4,13 @@ Record each meaningful project change during the event, newest first. Update thi
 
 ## Event build log
 
+## 2026-10-24T21:50:00+05:30 — Rename project to Kaaka
+
+- Changed: Renamed RakshaNet / Rakshak / realm-hack to Kaaka across apps, server, dashboard, backend, scripts, hfp-bridge and docs. Android app IDs and Java packages are now `com.kaaka.sensors` (client) and `com.kaaka.callapp` (gateway). The client now sends "Kaaka Alert: …"; the server and dashboard accept both "Kaaka" and legacy "Rakshak" alerts (`ALERT_TAGS` / `has_alert_tag` in `server/server.py`) so older app builds still work. Also adds the nested READMEs and `.gitignore` files that the import commit missed.
+- Why: New project name.
+- Validation: `swift build -c release` for hfp-bridge; Python syntax check of server, audio bridge, mac telephony client and scripts; `git grep` shows "Rakshak" only in the intentional legacy matching.
+- Limitations: Changed app IDs mean the Android apps install as new apps (permissions and default-SMS role must be granted again). `gateway/RakshaNet.apk` and `client/RakshakSensors.apk` are still the old prebuilt apps until rebuilt.
+
 ## 2026-10-24T21:40:00+05:30 — Run the call server on macOS via hfp-bridge
 
 - Changed: Added `mac/hfp-bridge` (Swift, IOBluetooth Hands-Free client that emits JSON-line events and accepts answer/hangup/status/quit commands, with a reconnect watchdog and caller-ID via CLIP/CLCC) and `server/mac_telephony.py` (subprocess client). `server/server.py` and `server/audio_bridge.py` guard Linux-only imports and, on macOS, use hfp-bridge for call detection, answer and hangup; auto-answer defaults off on macOS. Added `server/requirements-mac.txt` and a macOS section in the README. Also imported `subprocess` in `server.py`, which the ADB telemetry thread needed (it failed silently before, including on Linux).

@@ -1,4 +1,4 @@
-package net.rakshak.sensors;
+package com.kaaka.sensors;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

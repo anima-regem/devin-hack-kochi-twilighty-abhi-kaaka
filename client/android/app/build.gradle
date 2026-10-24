@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "net.rakshak.sensors"
+    namespace = "com.kaaka.sensors"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "net.rakshak.sensors"
+        applicationId "com.kaaka.sensors"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

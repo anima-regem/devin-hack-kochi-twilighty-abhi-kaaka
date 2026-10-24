@@ -1,4 +1,4 @@
-// hfp-bridge — macOS Bluetooth hands-free (HFP HF) bridge for the RakshaNet server.
+// hfp-bridge — macOS Bluetooth hands-free (HFP HF) bridge for the Kaaka server.
 //
 // The Mac acts as the hands-free unit, the phone as the audio gateway (IOBluetoothHandsFreeDevice).
 // Call control only: SCO audio is refused by macOS (connectSCO -> kIOReturnUnsupported).

@@ -1,8 +1,8 @@
 {
-  "name": "realm-hack",
+  "name": "kaaka",
   "version": "1.0.0",
   "private": true,
-  "description": "Monorepo workspace for realm-hack: client, gateway, and server",
+  "description": "Monorepo workspace for kaaka: client, gateway, and server",
   "scripts": {
     "dev:client": "npm --prefix client run dev",
     "dev:gateway": "npm --prefix gateway run dev",

@@ -1,10 +1,10 @@
-# realm-hack — RakshaNet Emergency Telemetry & Response Platform
+# kaaka — Kaaka Emergency Telemetry & Response Platform
 
 > **Abstract**: An edge-aware emergency telemetry and rapid-response system combining real-time physical sensor detection with automated telephony gateways and localized speech microservices. Built with Capacitor 7, Svelte 5 (runes mode), Node.js, Linux PipeWire D-Bus telephony monitors, and Malayalam voice AI (TTS/ASR), the platform bridges on-device incident detection with automated dispatch and base-station notification channels for reliable emergency intervention.
 
 ## Project Description
 
-**realm-hack** establishes an integrated emergency response loop split across three specialized components:
+**kaaka** establishes an integrated emergency response loop split across three specialized components:
 
 * **Client App (`client/`)** — Personal device application monitoring 5 hardware sensors (accelerometer, gyroscope, magnetometer, ambient light, pedometer). It evaluates kinematic thresholds to detect incidents/falls, packages live telemetry into emergency SMS broadcasts, and acts as a designated Android Default SMS Handler to execute full-screen wake locks, lockscreen dismissal, and continuous vibration alarms upon authorized triggers.
 * **Gateway App (`gateway/`)** — Mobile base-station client that links with local telephony listeners via WebSockets. It detects incoming calls over Bluetooth hands-free profiles (HFP) in real time and automatically dispatches immediate SMS alerts to callers without requiring manual device interaction.
@@ -16,7 +16,7 @@
 ## Architecture
 
 ```
-realm-hack/
+kaaka/
 ├── client/                     # Sensor telemetry, fall detection & default SMS receiver
 ├── gateway/                    # Automated Bluetooth call monitor & quick-dial app
 └── server/

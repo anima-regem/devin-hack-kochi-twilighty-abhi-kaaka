@@ -128,7 +128,7 @@
 						<span class="text-xs font-semibold text-emerald-400">Capacitor 7</span>
 					</div>
 					<p class="text-xs text-muted-foreground mt-1">
-						Package: <span class="text-foreground font-semibold">net.rakshak.sensors</span>
+						Package: <span class="text-foreground font-semibold">com.kaaka.sensors</span>
 					</p>
 
 					<div class="mt-4 space-y-2.5 text-xs">

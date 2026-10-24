@@ -158,7 +158,7 @@
   }
 
   onMount(() => {
-    const savedUrl = localStorage.getItem('rakshanet_ws_url');
+    const savedUrl = localStorage.getItem('kaaka_ws_url');
     if (savedUrl) {
       serverUrl = savedUrl;
     }
@@ -177,7 +177,7 @@
 
   function handleSaveSettings(e: Event) {
     e.preventDefault();
-    localStorage.setItem('rakshanet_ws_url', serverUrl);
+    localStorage.setItem('kaaka_ws_url', serverUrl);
     showSettings = false;
     connectWebSocket();
   }
@@ -192,7 +192,7 @@
   <main class="system-panel">
     <!-- Header -->
     <header class="panel-header">
-      <h1 class="brand-title">rakshanet</h1>
+      <h1 class="brand-title">kaaka</h1>
       <div class="header-right">
         <span class="status-indicator {wsConnected ? 'online' : 'offline'}">
           {wsConnected ? 'online' : 'connecting'}

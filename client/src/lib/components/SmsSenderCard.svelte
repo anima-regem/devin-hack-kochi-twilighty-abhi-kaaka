@@ -10,7 +10,7 @@
 	import { defaultSmsManager } from "#lib/services/defaultSmsService.svelte.js";
 
 	let phoneNumber = $state("9495364448");
-	let message = $state("Rakshak Alert: Emergency assistance requested");
+	let message = $state("Kaaka Alert: Emergency assistance requested");
 	let isSending = $state(false);
 	let status = $state<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -51,7 +51,7 @@
 	async function appendSensorTelemetry() {
 		await sensorManager.refreshLocation();
 		const report = buildTelemetryReport();
-		message = `Rakshak Alert: Emergency assistance requested\n\n${report}`;
+		message = `Kaaka Alert: Emergency assistance requested\n\n${report}`;
 	}
 
 	async function handleSend() {

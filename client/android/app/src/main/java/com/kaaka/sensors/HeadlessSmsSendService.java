@@ -1,4 +1,4 @@
-package net.rakshak.sensors;
+package com.kaaka.sensors;
 
 import android.app.Service;
 import android.content.Intent;

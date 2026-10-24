@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RakshaNet Real-Time Audio Conversation Bridge
+Kaaka Real-Time Audio Conversation Bridge
 =============================================
 Records and processes 10-second audio segments ONLY DURING AN ACTIVE CALL on Redmi Note 10.
 
@@ -75,7 +75,7 @@ def ensure_audio_sinks():
         return
     try:
         sinks = subprocess.getoutput('pactl list sinks short')
-        for name, desc in [('call_playback', 'RakshaCallPlayback'), ('call_record', 'RakshaCallRecord')]:
+        for name, desc in [('call_playback', 'KaakaCallPlayback'), ('call_record', 'KaakaCallRecord')]:
             if name not in sinks:
                 subprocess.run(['pactl', 'load-module', 'module-null-sink', f'sink_name={name}', f'sink_properties=device.description={desc}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
@@ -388,7 +388,7 @@ class AudioConversationBridge:
 if __name__ == "__main__":
     bridge = AudioConversationBridge()
     print("=" * 65)
-    print(" RakshaNet Call-Activated Audio AI Conversation Bridge")
+    print(" Kaaka Call-Activated Audio AI Conversation Bridge")
     print("=================================================================")
     print(" Active: STRICTLY ONLY DURING ACTIVE PHONE CALLS on Redmi Note 10")
     print(" Target: http://192.168.2.69:5678/webhook-test/passive")

@@ -26,7 +26,7 @@ export class TelemetryBeaconService {
 		const loc = sensorManager.location;
 
 		const lines = [
-			"Rakshak Alert: Emergency assistance requested",
+			"Kaaka Alert: Emergency assistance requested",
 			"",
 			"Live Sensors (5/5):",
 			`• Pedometer: ${steps} steps (${distance} km)`,

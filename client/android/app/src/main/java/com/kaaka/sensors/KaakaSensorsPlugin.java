@@ -1,4 +1,4 @@
-package net.rakshak.sensors;
+package com.kaaka.sensors;
 
 import android.Manifest;
 import android.content.Context;
@@ -24,7 +24,7 @@ import com.getcapacitor.annotation.Permission;
 import com.getcapacitor.annotation.PermissionCallback;
 
 @CapacitorPlugin(
-    name = "RakshakSensors",
+    name = "KaakaSensors",
     permissions = {
         @Permission(
             strings = { Manifest.permission.ACTIVITY_RECOGNITION },
@@ -36,7 +36,7 @@ import com.getcapacitor.annotation.PermissionCallback;
         )
     }
 )
-public class RakshakSensorsPlugin extends Plugin implements SensorEventListener {
+public class KaakaSensorsPlugin extends Plugin implements SensorEventListener {
 
     private SensorManager sensorManager;
     private LocationManager locationManager;

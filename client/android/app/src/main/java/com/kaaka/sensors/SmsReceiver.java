@@ -1,4 +1,4 @@
-package net.rakshak.sensors;
+package com.kaaka.sensors;
 
 import android.app.ActivityOptions;
 import android.app.NotificationChannel;
@@ -51,14 +51,14 @@ public class SmsReceiver extends BroadcastReceiver {
         String action = (intent != null) ? intent.getAction() : null;
         if (Telephony.Sms.Intents.SMS_DELIVER_ACTION.equals(action) ||
             Telephony.Sms.Intents.SMS_RECEIVED_ACTION.equals(action) ||
-            "net.rakshak.sensors.TEST_INCOMING_SMS".equals(action) ||
+            "com.kaaka.sensors.TEST_INCOMING_SMS".equals(action) ||
             "com.example.sampleapp.TEST_INCOMING_SMS".equals(action)) {
 
             String sender = null;
             String completeMessage = "";
             long timestamp = System.currentTimeMillis();
 
-            if ("net.rakshak.sensors.TEST_INCOMING_SMS".equals(action) ||
+            if ("com.kaaka.sensors.TEST_INCOMING_SMS".equals(action) ||
                 "com.example.sampleapp.TEST_INCOMING_SMS".equals(action)) {
                 sender = intent.getStringExtra("sender");
                 completeMessage = intent.getStringExtra("message");
@@ -95,7 +95,7 @@ public class SmsReceiver extends BroadcastReceiver {
             // 2. CHECK SENDER & CONTENT: Is it an authorized emergency contact or emergency trigger keyword?
             boolean isAuthorizedSender = digitsOnly.endsWith(TARGET_PHONE_SUFFIX) || digitsOnly.endsWith(TARGET_PHONE_SUFFIX_ALT);
             String lowerMsg = completeMessage != null ? completeMessage.toLowerCase() : "";
-            boolean isEmergencyTrigger = lowerMsg.contains("call") || lowerMsg.contains("emergency") || lowerMsg.contains("alert") || lowerMsg.contains("rakshak");
+            boolean isEmergencyTrigger = lowerMsg.contains("call") || lowerMsg.contains("emergency") || lowerMsg.contains("alert") || lowerMsg.contains("kaaka");
 
             if (!isAuthorizedSender && !isEmergencyTrigger) {
                 // Regular contact: post normal notification (NO auto-open, NO alarm vibration)
@@ -259,7 +259,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     PowerManager.FULL_WAKE_LOCK |
                     PowerManager.ACQUIRE_CAUSES_WAKEUP |
                     PowerManager.ON_AFTER_RELEASE,
-                    "rakshak:SmsUrgentWakeLock"
+                    "kaaka:SmsUrgentWakeLock"
                 );
                 wakeLock.acquire(10000);
             }

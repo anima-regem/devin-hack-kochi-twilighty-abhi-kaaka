@@ -20,7 +20,7 @@ app.use("/api", apiRouter);
 // Root route
 app.get("/", (_req, res) => {
   res.json({
-    name: "Rakshak Sensors Telemetry Backend",
+    name: "Kaaka Sensors Telemetry Backend",
     version: "1.0.0",
     endpoints: {
       health: "/api/health",
@@ -41,6 +41,6 @@ const server = http.createServer(app);
 setupWebSocketServer(server);
 
 server.listen(port, () => {
-  console.log(`[Rakshak Sensors Backend] Server listening on port ${port}`);
+  console.log(`[Kaaka Sensors Backend] Server listening on port ${port}`);
   console.log(`[WebSocket] Live stream available at ws://localhost:${port}/ws`);
 });

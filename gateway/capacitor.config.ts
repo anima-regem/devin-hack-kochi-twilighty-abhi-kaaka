@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.rakshanet.callapp',
-  appName: 'RakshaNet Call',
+  appId: 'com.kaaka.callapp',
+  appName: 'Kaaka Call',
   webDir: 'dist',
   server: {
     androidScheme: 'http',

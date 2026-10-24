@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>rakshanet / server</title>
+  <title>kaaka / server</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
@@ -370,7 +370,7 @@
   <!-- Top Header Panel -->
   <header class="header-panel">
     <div class="brand-section">
-      <span class="brand-title">rakshanet / server</span>
+      <span class="brand-title">kaaka / server</span>
       <span class="brand-sub">emergency telemetry hub</span>
     </div>
 
@@ -400,7 +400,7 @@
       </div>
     </div>
 
-    <div class="alert-terminal-box" id="raw-telemetry-box">rakshak alert: standby mode
+    <div class="alert-terminal-box" id="raw-telemetry-box">kaaka alert: standby mode
 
 awaiting emergency trigger from client or gateway...</div>
   </section>
@@ -571,7 +571,7 @@ awaiting emergency trigger from client or gateway...</div>
 
   <!-- Minimal Footer -->
   <footer>
-    rakshanet server • technical telemetry control system
+    kaaka server • technical telemetry control system
   </footer>
 </div>
 
@@ -633,7 +633,7 @@ awaiting emergency trigger from client or gateway...</div>
           const msg = JSON.parse(event.data);
           handleIncomingMessage(msg);
         } catch (e) {
-          if (event.data.includes('Live Sensors') || event.data.includes('Rakshak Alert')) {
+          if (event.data.includes('Live Sensors') || event.data.includes('Kaaka Alert') || event.data.includes('Rakshak Alert')) {
             updateTelemetryDisplay(event.data, 'direct websocket');
           }
         }
@@ -864,7 +864,7 @@ awaiting emergency trigger from client or gateway...</div>
   function triggerSimulatedAlert() {
     const lat = (9.064458 + (Math.random() - 0.5) * 0.005).toFixed(6);
     const lon = (76.557012 + (Math.random() - 0.5) * 0.005).toFixed(6);
-    const sample = `Rakshak Alert: Emergency assistance requested\n\nLive Sensors (5/5):\n• Pedometer: ${Math.floor(Math.random() * 50)} steps (0.03 km)\n• Light: ${Math.floor(Math.random() * 80 + 30)} lx\n• Accelerometer: ${(Math.random() * 1.5 + 9.2).toFixed(1)} m/s²\n• Gyroscope: ${(Math.random() * 0.5).toFixed(1)} rad/s\n• Magnetometer: ${Math.floor(Math.random() * 360)}° S\n• Coords: ${lat}, ${lon}\n• Maps: https://maps.google.com/?q=${lat},${lon}`;
+    const sample = `Kaaka Alert: Emergency assistance requested\n\nLive Sensors (5/5):\n• Pedometer: ${Math.floor(Math.random() * 50)} steps (0.03 km)\n• Light: ${Math.floor(Math.random() * 80 + 30)} lx\n• Accelerometer: ${(Math.random() * 1.5 + 9.2).toFixed(1)} m/s²\n• Gyroscope: ${(Math.random() * 0.5).toFixed(1)} rad/s\n• Magnetometer: ${Math.floor(Math.random() * 360)}° S\n• Coords: ${lat}, ${lon}\n• Maps: https://maps.google.com/?q=${lat},${lon}`;
     
     if (ws && ws.readyState === WebSocket.OPEN) {
       ws.send(JSON.stringify({
